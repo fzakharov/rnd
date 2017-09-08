@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cors = require('cors');
+//var cors = require('cors');
 var app = express();
 
 const Pool = require('pg-pool');
@@ -8,7 +8,7 @@ const url = require('url');
 
 app.use(bodyParser.json());
 app.set('port', process.env.PORT || 8080);
-app.use(cors());
+//app.use(cors());
 
 // todo: like this:
 //var distDir = __dirname + "/dist/";
