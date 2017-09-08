@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "main": "server.js",
+  "engines": {
+    "node": "6.11.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
@@ -11,8 +14,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "preinstall": "npm install -g angular-cli",
-    "postinstall": "ng build",
-    "deploy": "git push origin master"
+    "postinstall": "npm install && ng build"
   },
   "private": true,
   "dependencies": {
