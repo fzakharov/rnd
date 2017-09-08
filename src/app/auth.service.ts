@@ -11,7 +11,7 @@ export class AuthService {
     domain: 'chronolog.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://chronolog.eu.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/callback',
+    redirectUri: 'http://localhost:8080/callback',
     scope: 'openid'
   });
 
