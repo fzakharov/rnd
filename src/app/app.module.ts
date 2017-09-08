@@ -3,14 +3,19 @@ import { NgModule } from '@angular/core';
 import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { CallbackComponent } from './callback/callback.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule
+    RouterModule.forRoot([
+      {path:'', component : AppComponent },
+      {path:'callback', component : CallbackComponent }
+    ])
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
