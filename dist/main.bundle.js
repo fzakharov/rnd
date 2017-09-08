@@ -162,21 +162,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AuthService = /** @class */ (function () {
     function AuthService(router) {
         this.router = router;
-        this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
-            clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
-            domain: 'chronolog.eu.auth0.com',
-            responseType: 'token id_token',
-            audience: 'https://chronolog.eu.auth0.com/userinfo',
-            redirectUri: 'https://damp-garden-79192.herokuapp.com/callback',
-            scope: 'openid'
-        });
+        var redirUrl = 'https://damp-garden-79192.herokuapp.com/callback';
         if (!__WEBPACK_IMPORTED_MODULE_4__environments_environment__["a" /* environment */].production) {
+            redirUrl = 'http://127.0.0.1:8080/callback';
             this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
                 clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
                 domain: 'chronolog.eu.auth0.com',
                 responseType: 'token id_token',
                 audience: 'https://chronolog.eu.auth0.com/userinfo',
-                redirectUri: 'http://127.0.0.1:8080/callback',
+                redirectUri: redirUrl,
                 scope: 'openid'
             });
         }

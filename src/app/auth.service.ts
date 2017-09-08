@@ -6,25 +6,20 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class AuthService {
-
-  auth0 = new auth0.WebAuth({
-    clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
-    domain: 'chronolog.eu.auth0.com',
-    responseType: 'token id_token',
-    audience: 'https://chronolog.eu.auth0.com/userinfo',
-    redirectUri: 'https://damp-garden-79192.herokuapp.com/callback',
-    scope: 'openid'
-  });
+  auth0:any;
 
   constructor(private router: Router) {
+    var redirUrl = 'https://damp-garden-79192.herokuapp.com/callback';
 
     if (!environment.production){
+      redirUrl = 'http://127.0.0.1:8080/callback';
+
       this.auth0 = new auth0.WebAuth({
         clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
         domain: 'chronolog.eu.auth0.com',
         responseType: 'token id_token',
         audience: 'https://chronolog.eu.auth0.com/userinfo',
-        redirectUri: 'http://127.0.0.1:8080/callback',
+        redirectUri: redirUrl,
         scope: 'openid'
       });
     }
