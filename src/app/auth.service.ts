@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -11,11 +12,23 @@ export class AuthService {
     domain: 'chronolog.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://chronolog.eu.auth0.com/userinfo',
-    redirectUri: 'http://localhost:8080/callback',
+    redirectUri: 'https://damp-garden-79192.herokuapp.com/callback',
     scope: 'openid'
   });
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+
+    if (!environment.production){
+      this.auth0 = new auth0.WebAuth({
+        clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
+        domain: 'chronolog.eu.auth0.com',
+        responseType: 'token id_token',
+        audience: 'https://chronolog.eu.auth0.com/userinfo',
+        redirectUri: 'http://127.0.0.1:8080/callback',
+        scope: 'openid'
+      });
+    }
+  }
 
   public login(): void {
     this.auth0.authorize();
