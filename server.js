@@ -8,9 +8,14 @@ const url = require('url');
 
 app.use(bodyParser.json());
 app.set('port', process.env.PORT || 8080);
-app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
-app.use(express.static("dist")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
-app.use("/callback", express.static("dist")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
+app.use(cors());
+
+// todo: like this:
+//var distDir = __dirname + "/dist/";
+//app.use(express.static(distDir));
+
+app.use(express.static("dist"));
+app.use("/callback", express.static("dist"));
 
 var DATABASE_URL = process.env.DATABASE_URL
   || 'postgres://developer:dev@localhost:5432/chrono_dev_db';
