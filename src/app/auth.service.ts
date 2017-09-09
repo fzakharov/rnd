@@ -11,8 +11,9 @@ export class AuthService {
   constructor(private router: Router) {
     var redirUrl = 'https://damp-garden-79192.herokuapp.com/callback';
 
-    if (!environment.production)
-    redirUrl = 'http://127.0.0.1:8080/callback';
+    if (!environment.production) {
+      redirUrl = 'http://127.0.0.1:8080/callback';
+    }
 
     this.auth0 = new auth0.WebAuth({
       clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
@@ -23,7 +24,7 @@ export class AuthService {
       scope: 'openid'
     });
   }
-  
+
   public login(): void {
     this.auth0.authorize();
   }
