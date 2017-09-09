@@ -1,4 +1,20 @@
-<nav class="navbar navbar-default">
+<md-card class="example-card">
+  <md-card-header>
+    <md-card-title>The Chronolog</md-card-title>
+    <md-card-subtitle>Life events app</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <p>
+      You can ...
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Log In</button>
+    <button md-button *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Log Out</button>
+  </md-card-actions>
+</md-card>
+
+<!-- <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Auth0 - Angular</a>
@@ -25,7 +41,7 @@
 
     </div>
   </div>
-</nav>
+</nav> -->
 
 <main class="container">
   <router-outlet></router-outlet>
