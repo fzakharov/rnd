@@ -13,9 +13,9 @@ require(`quasar/dist/quasar.${__THEME}.css`)
 import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
-import AuthService from './Auth/AuthService'
+// import AuthService from './auth/AuthService'
 
-const auth = new AuthService()
+// const auth = new AuthService()
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
@@ -29,10 +29,9 @@ import 'quasar-extras/material-icons'
 // import 'quasar-extras/animate'
 
 Quasar.start(() => {
-  auth.login()
   /* eslint-disable no-new */
   new Vue({
-    el: '#q-app',
+    el: '#app',
     router,
     render: h => h(require('./App'))
   })
