@@ -7,7 +7,7 @@
 
           <router-link :to="'/'"
             class="btn btn-primary btn-margin">
-              Home
+              Welcome
           </router-link>
 
           <button
@@ -38,7 +38,9 @@
 </template>
 
 <script>
+
 import AuthService from './auth/AuthService'
+
 const auth = new AuthService()
 const { login, logout, authenticated, authNotifier } = auth
 export default {

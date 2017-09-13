@@ -33,7 +33,7 @@ export default class AuthService {
         router.replace('home')
       }
       else if (err) {
-        router.replace('home')
+        router.replace('welcome')
         console.log(err)
       }
     })

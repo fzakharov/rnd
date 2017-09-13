@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import App from './App'
 import Home from './components/Home'
+import Welcome from './components/Welcome'
 import Callback from './components/Callback'
 import Error404 from './components/Error404'
 
@@ -28,8 +28,8 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'App',
-      component: App
+      name: 'Welcome',
+      component: Welcome
     },
     {
       path: '/home',
