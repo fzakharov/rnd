@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <nav class="navbar navbar-default">
@@ -59,9 +58,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.btn-margin {
-  margin-top: 7px
-}
-</style>
