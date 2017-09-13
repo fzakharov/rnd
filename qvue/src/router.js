@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import App from './App'
 import Home from './components/Home'
 import Callback from './components/Callback'
+import Error404 from './components/Error404'
 
 Vue.use(VueRouter)
 
@@ -25,6 +27,11 @@ export default new VueRouter({
 
   routes: [
     {
+      path: '/',
+      name: 'App',
+      component: App
+    },
+    {
       path: '/home',
       name: 'Home',
       component: Home
@@ -36,10 +43,8 @@ export default new VueRouter({
     },
     {
       path: '*',
-      redirect: '/home'
+      name: 'Error404',
+      component: Error404
     }
-
-    // Always leave this last one
-    // { path: '*', component: load('Error404') } // Not found
   ]
 })
