@@ -1,33 +1,16 @@
 <template>
   <div>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Auth0 - Vue</a>
-
-          <router-link :to="'/'"
-            class="btn btn-primary btn-margin">
-              Welcome
-          </router-link>
-
-          <button
-            class="btn btn-primary btn-margin"
-            v-if="!authenticated"
-            @click="login()">
-              Log In
-          </button>
-
-          <button
-            class="btn btn-primary btn-margin"
-            v-if="authenticated"
-            @click="logout()">
-              Log Out
-          </button>
-
-        </div>
-      </div>
-    </nav>
-
+    <q-toolbar>
+      <q-toolbar-title>
+        Chronolog
+      </q-toolbar-title>
+      <q-btn @click="login()" v-if="!authenticated">
+        Login
+      </q-btn>
+      <q-btn @click="logout()" v-if="authenticated">
+        Logout
+      </q-btn>
+    </q-toolbar>
     <div class="container">
       <router-view
         :auth="auth"
@@ -40,10 +23,22 @@
 <script>
 
 import AuthService from './auth/AuthService'
+import {
+  QToolbar,
+  QToolbarTitle,
+  QBtn,
+  QIcon
+} from 'quasar'
 
 const auth = new AuthService()
 const { login, logout, authenticated, authNotifier } = auth
 export default {
+  components: {
+    QToolbar,
+    QToolbarTitle,
+    QBtn,
+    QIcon
+  },
   name: 'app',
   data () {
     authNotifier.on('authChange', authState => {
