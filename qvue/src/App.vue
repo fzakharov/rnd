@@ -1,11 +1,14 @@
 <template>
   <div>
     <q-toolbar>
+      <q-btn @click="$router.push('/home')" v-if="authenticated">
+        <q-icon name="home"></q-icon>
+      </q-btn>
       <q-toolbar-title>
         Chronolog
       </q-toolbar-title>
       <q-btn @click="login()" v-if="!authenticated">
-        Login
+        <q-icon name="exit to app"></q-icon>
       </q-btn>
       <q-btn @click="logout()" v-if="authenticated">
         Logout
