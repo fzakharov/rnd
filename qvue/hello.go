@@ -1,4 +1,4 @@
-package main
+package hello
 
 import (
 	"database/sql"
@@ -36,7 +36,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	fatalOnErr(err)
 }
 
-func main() {
+func aamain() {
 	http.HandleFunc("/api/v1/facts/", viewHandler)
 	http.ListenAndServe(":8080", nil)
 }

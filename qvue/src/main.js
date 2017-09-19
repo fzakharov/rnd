@@ -11,6 +11,7 @@ require(`quasar/dist/quasar.${__THEME}.css`)
 // require(`quasar/dist/quasar.ie.${__THEME}.css`)
 
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 import Quasar from 'quasar'
 import router from './router'
 // import AuthService from './auth/AuthService'
@@ -18,6 +19,7 @@ import router from './router'
 // const auth = new AuthService()
 
 Vue.config.productionTip = false
+Vue.use(VueResource)
 Vue.use(Quasar) // Install Quasar Framework
 
 if (__THEME === 'mat') {
