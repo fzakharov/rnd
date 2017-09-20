@@ -26,9 +26,47 @@ if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')
 }
 import 'quasar-extras/material-icons'
-// import 'quasar-extras/ionicons'
-// import 'quasar-extras/fontawesome'
-// import 'quasar-extras/animate'
+
+// console.log('Before Vue.http.interceptors')
+// Vue.http.interceptors.push({
+//   request: (request) => {
+//     console.log('Vue.http.interceptors get item')
+//     const token = localStorage.getItem('access_token')
+//     console.log('Vue.http.interceptors:' + token)
+//     if (token !== null && token !== 'undefined') {
+//       request.headers.set('Authorization', 'Bearer ' + token)
+//     }
+//
+//     return request
+//   },
+//   response: (response) => {
+//     if (response.status && response.status === 401) {
+//       localStorage.removeItem('access_token')
+//     }
+//
+//     if (response.data.success && response.data.result.token) {
+//       localStorage.setItem('access_token', response.data.result.token)
+//     }
+//
+//     // Refresh token
+//     if (response.headers('Authorization')) {
+//       localStorage.setItem('access_token', response.headers('Authorization'))
+//     }
+//
+//     return response
+//   }
+// })
+// console.log('After Vue.http.interceptors')
+// Vue.http.options.xhr = { withCredentials: true }
+Vue.http.interceptors.push(function (request, next) {
+  // modify method
+  // modify headers
+  const token = localStorage.getItem('access_token')
+  request.headers.set('Authorization', 'Bearer ' + token)
+  console.log('access_token' + token)
+  // continue to next interceptor
+  next()
+})
 
 Quasar.start(() => {
   /* eslint-disable no-new */

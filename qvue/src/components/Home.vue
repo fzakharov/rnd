@@ -27,28 +27,27 @@
     name: 'home',
     props: ['auth', 'authenticated'],
     data () {
-      const accessToken = localStorage.getItem('access_token') || null
-      const headers = { Authorization: `Bearer ${accessToken}` }
+      const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }
       return {
         message: '',
         ping () {
-          this.$http.get('http://localhost:3001/api/public')
+          this.$http.get('http://lvh.me:3001/api/public')
             .then(response => {
-              this.message = response.body.message
+              this.message = response.body
             }, error => {
               this.message = error.statusText
             })
         },
         securedPing () {
-          this.$http.get('http://localhost:3001/api/private', { headers })
+          this.$http.get('http://lvh.me:3001/api/private', { withCredentials: true })
             .then(response => {
-              this.message = response.body.message
+              this.message = response.body // .message
             }, error => {
               this.message = error.statusText
             })
         },
         adminPing () {
-          this.$http.get('http://localhost:3001/api/private/admin', { headers })
+          this.$http.get('http://lvh.me:3001/api/private/admin', { headers })
             .then(response => {
               this.message = response.body.message
             }, error => {

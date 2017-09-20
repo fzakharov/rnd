@@ -30,8 +30,12 @@ func main() {
 			Message: "Hello from a public endpoint! You don't need to be authenticated to see this.",
 		}
 
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusOK)
+		//fmt.Fprintf(w, "{message:\"%s\"}", response.Message)
 		json.NewEncoder(w).Encode(response)
+		fmt.Println("Call public")
 	}))
 
 	// This route is only accessible if the user has a valid access_token with the read:messages scope
@@ -42,13 +46,15 @@ func main() {
 			Message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.",
 		}
 
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(response)
 
 	})))
 
 	http.ListenAndServe(":3001", r)
-	fmt.Println("Listening on http://localhost:3001")
+	fmt.Println("Listening on http://lvh.me:3001")
 }
 
 func checkJwt(h http.Handler) http.Handler {
@@ -62,12 +68,14 @@ func checkJwt(h http.Handler) http.Handler {
 		token, err := validator.ValidateRequest(r)
 
 		if err != nil {
-			fmt.Println("Token is not valid or missing token")
+			fmt.Println("Token is not valid or missing token: ", err.Error())
 
 			response := Response{
 				Message: "Missing or invalid token.",
 			}
 
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.Header().Set("Access-Control-Allow-Origin", "*")
 			w.WriteHeader(http.StatusUnauthorized)
 			json.NewEncoder(w).Encode(response)
 
@@ -75,15 +83,16 @@ func checkJwt(h http.Handler) http.Handler {
 			// Ensure the token has the correct scope
 			result := checkScope(r, validator, token)
 			if result == true {
-				// If the token is valid and we have the right scope, we'll pass through the middleware
 				h.ServeHTTP(w, r)
+				// If the token is valid and we have the right scope, we'll pass through the middleware
 			} else {
 				response := Response{
 					Message: "You do not have the read:messages scope.",
 				}
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
+				w.Header().Set("Access-Control-Allow-Origin", "*")
 				w.WriteHeader(http.StatusUnauthorized)
 				json.NewEncoder(w).Encode(response)
-
 			}
 		}
 	})

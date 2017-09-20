@@ -16,10 +16,10 @@ export default class AuthService {
   auth0 = new auth0.WebAuth({
     domain: 'chronolog.eu.auth0.com',
     clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
-    redirectUri: 'http://localhost:8080/callback',
-    audience: 'https://chronolog.eu.auth0.com/userinfo',
+    redirectUri: 'http://lvh.me:8080/callback',
+    audience: 'https://chronolog.eu.auth0.com/api/v2/',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile read:messages'
   })
 
   login () {
