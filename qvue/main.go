@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strings"
 
 	auth0 "github.com/auth0-community/go-auth0"
 	"github.com/gorilla/mux"
@@ -12,11 +11,12 @@ import (
 	jwt "gopkg.in/square/go-jose.v2/jwt"
 )
 
-const JWKS_URI = "https://chronolog.eu.auth0.com/.well-known/jwks.json"
-const AUTH0_API_ISSUER = "https://chronolog.eu.auth0.com/"
+const jwksURI = "https://chronolog.eu.auth0.com/.well-known/jwks.json"
+const auth0ApiIssuer = "https://chronolog.eu.auth0.com/"
 
-var AUTH0_API_AUDIENCE = []string{"https://chronolog.eu.auth0.com/api/v2/"}
+var auth0ApiAudience = []string{"https://chronolog.eu.auth0.com/api/v2/"}
 
+// Response to frontend
 type Response struct {
 	Message string `json:"message"`
 }
@@ -58,13 +58,12 @@ func main() {
 
 func checkJwt(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		client := auth0.NewJWKClient(auth0.JWKClientOptions{URI: JWKS_URI})
-		audience := AUTH0_API_AUDIENCE
+		client := auth0.NewJWKClient(auth0.JWKClientOptions{URI: jwksURI})
+		audience := auth0ApiAudience
 
-		configuration := auth0.NewConfiguration(client, audience, AUTH0_API_ISSUER, jose.RS256)
+		configuration := auth0.NewConfiguration(client, audience, auth0ApiIssuer, jose.RS256)
 		validator := auth0.NewValidator(configuration)
 		token, err := validator.ValidateRequest(r)
-		fmt.Print(token)
 
 		if err != nil {
 			fmt.Println("Token is not valid or missing token: ", err.Error())
@@ -80,36 +79,36 @@ func checkJwt(h http.Handler) http.Handler {
 
 		} else {
 			// Ensure the token has the correct scope
-			// result := checkScope(r, validator, token)
-			h.ServeHTTP(w, r)
-			// if result == true {
-			// 	h.ServeHTTP(w, r)
-			// 	// If the token is valid and we have the right scope, we'll pass through the middleware
-			// } else {
-			// 	response := Response{
-			// 		Message: "You do not have the read:messages scope.",
-			// 	}
-			// 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-			// 	w.Header().Set("Access-Control-Allow-Origin", "*")
-			// 	w.WriteHeader(http.StatusUnauthorized)
-			// 	json.NewEncoder(w).Encode(response)
-			// }
+			result := checkScope(r, validator, token)
+			if result == true {
+				h.ServeHTTP(w, r)
+				// If the token is valid and we have the right scope, we'll pass through the middleware
+			} else {
+				response := Response{
+					Message: "You do not have the read:messages scope.",
+				}
+				w.Header().Set("Content-Type", "text/html; charset=utf-8")
+				w.Header().Set("Access-Control-Allow-Origin", "*")
+				w.WriteHeader(http.StatusUnauthorized)
+				json.NewEncoder(w).Encode(response)
+			}
 		}
 	})
 }
 
 func checkScope(r *http.Request, validator *auth0.JWTValidator, token *jwt.JSONWebToken) bool {
-	claims := map[string]interface{}{}
-	err := validator.Claims(r, token, &claims)
-
-	if err != nil {
-		fmt.Println(err)
-		return false
-	}
-
-	if strings.Contains(claims["scope"].(string), "read:messages") {
-		return true
-	} else {
-		return false
-	}
+	return true
+	// claims := map[string]interface{}{}
+	// err := validator.Claims(r, token, &claims)
+	//
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return false
+	// }
+	//
+	// if strings.Contains(claims["scope"].(string), "read:user") {
+	// 	return true
+	// } else {
+	// 	return false
+	// }
 }
