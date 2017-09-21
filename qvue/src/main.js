@@ -58,15 +58,16 @@ import 'quasar-extras/material-icons'
 // })
 // console.log('After Vue.http.interceptors')
 // Vue.http.options.xhr = { withCredentials: true }
-Vue.http.interceptors.push(function (request, next) {
-  // modify method
-  // modify headers
-  const token = localStorage.getItem('access_token')
-  request.headers.set('Authorization', 'Bearer ' + token)
-  console.log('access_token' + token)
-  // continue to next interceptor
-  next()
-})
+// Vue.http.interceptors.push(function (request, next) {
+//   // modify method
+//   // modify headers
+//   const token = localStorage.getItem('access_token')
+//   request.headers.set('Access-Control-Allow-Headers', 'true')
+//   request.headers.set('Authorization', 'Bearer ' + token)
+//   console.log('access_token' + token)
+//   // continue to next interceptor
+//   next()
+// })
 
 Quasar.start(() => {
   /* eslint-disable no-new */

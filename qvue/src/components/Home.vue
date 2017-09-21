@@ -6,24 +6,17 @@
     <h4 v-if="!authenticated">
       You are not logged in! Please <a @click="auth.login()">Log In</a> to continue.
     </h4>
-    <button
-      class="btn btn-primary"
-      @click="ping()">
-        Call Public
-    </button>
-
-    <button
-      class="btn btn-primary"
-      @click="securedPing()"
-      >
-        Call Private
-    </button>
-    <h2>{{ message }}</h2>
+    <q-btn @click="ping()" v-if="authenticated">public</q-btn>
+    <q-btn @click="securedPing()" v-if="authenticated">private</q-btn>
+    <h3>{{ message }}</h3>
   </div>
 </template>
 
 <script>
+  import { QBtn } from 'quasar'
+  import Vue from 'vue'
   export default {
+    components: { QBtn, Vue },
     name: 'home',
     props: ['auth', 'authenticated'],
     data () {
@@ -31,7 +24,7 @@
       return {
         message: '',
         ping () {
-          this.$http.get('http://lvh.me:3001/api/public')
+          Vue.http.get('http://lvh.me:3001/api/public')
             .then(response => {
               this.message = response.body
             }, error => {
@@ -39,7 +32,7 @@
             })
         },
         securedPing () {
-          this.$http.get('http://lvh.me:3001/api/private', { withCredentials: true })
+          Vue.http.get('http://lvh.me:3001/api/private', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') } })
             .then(response => {
               this.message = response.body // .message
             }, error => {
