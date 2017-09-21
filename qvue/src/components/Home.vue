@@ -24,7 +24,7 @@
       return {
         message: '',
         ping () {
-          Vue.http.get('http://lvh.me:3001/api/public')
+          Vue.http.get('http://lvh.me:3001/api/public', {headers: {'Content-Type': 'application/json'}})
             .then(response => {
               this.message = response.body
             }, error => {
@@ -32,9 +32,15 @@
             })
         },
         securedPing () {
-          Vue.http.get('http://lvh.me:3001/api/private', { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') } })
+          var token = localStorage.getItem('access_token')
+          Vue.http.get('http://lvh.me:3001/api/private', {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token
+            }
+          })
             .then(response => {
-              this.message = response.body // .message
+              this.message = response.body.message
             }, error => {
               this.message = error.statusText
             })
