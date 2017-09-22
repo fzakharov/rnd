@@ -28,7 +28,7 @@ func main() {
 	r.Handle("/api/public", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "OPTIONS" {
 			w.Header().Set("Access-Control-Allow-Methods", "OPTIONS, GET, PUT, DELETE")
-			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Origin", "*") // todo replace star to url
 			w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 			w.WriteHeader(http.StatusOK)
 		} else {
@@ -37,8 +37,9 @@ func main() {
 				Message: "Hello from a public endpoint! You don't need to be authenticated to see this.",
 			}
 
+			// TODO: copypaste headers init
 			w.Header().Set("Content-Type", "application/json")
-			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Origin", "*") // TODO: replace star to url
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(response)
 			fmt.Println("Call public")
@@ -54,7 +55,7 @@ func main() {
 		}
 
 		w.Header().Set("Content-Type", "application/json")
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Origin", "*") // todo replace star to url
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(response)
 	})))
@@ -67,7 +68,7 @@ func checkJwt(h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "OPTIONS" {
 			w.Header().Set("Access-Control-Allow-Methods", "OPTIONS, GET, PUT, DELETE")
-			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Origin", "*") // todo replace star to url
 			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 			w.WriteHeader(http.StatusOK)
 		} else {
