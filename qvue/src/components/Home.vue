@@ -6,9 +6,9 @@
     <h4 v-if="!authenticated">
       You are not logged in! Please <a @click="auth.login()">Log In</a> to continue.
     </h4>
-    <q-btn @click="ping()" v-if="authenticated">public</q-btn>
+    <q-btn @click="ping()">public</q-btn>
     <q-btn @click="securedPing()" v-if="authenticated">private</q-btn>
-    <h3>{{ message }}</h3>
+    <h5>{{ message }}</h5>
   </div>
 </template>
 
@@ -20,13 +20,12 @@
     name: 'home',
     props: ['auth', 'authenticated'],
     data () {
-      const headers = { 'Authorization': 'Bearer ' + localStorage.getItem('access_token') }
       return {
         message: '',
         ping () {
-          Vue.http.get('http://lvh.me:3001/api/public', {headers: {'Content-Type': 'application/json'}})
+          Vue.http.get('http://lvh.me:3001/api/public', { headers: {'Content-Type': 'application/json'} })
             .then(response => {
-              this.message = response.body
+              this.message = response.body.message
             }, error => {
               this.message = error.statusText
             })
@@ -39,14 +38,6 @@
               'Authorization': 'Bearer ' + token
             }
           })
-            .then(response => {
-              this.message = response.body.message
-            }, error => {
-              this.message = error.statusText
-            })
-        },
-        adminPing () {
-          this.$http.get('http://lvh.me:3001/api/private/admin', { headers })
             .then(response => {
               this.message = response.body.message
             }, error => {
