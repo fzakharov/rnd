@@ -18,8 +18,9 @@ export default class AuthService {
     clientID: 'xHuQJZLw1YD1BVudRcJFsyVf23s5NEQE',
     redirectUri: 'http://lvh.me:8080/callback',
     audience: 'https://chronolog.eu.auth0.com/api/v2/',
-    responseType: 'token id_token',
-    scope: 'openid profile'
+    responseType: 'token id_token'
+    // scope: 'openid profile'
+    // scope: 'read:rules'
   })
 
   login () {

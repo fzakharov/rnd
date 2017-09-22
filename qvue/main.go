@@ -119,7 +119,7 @@ func checkScope(r *http.Request, validator *auth0.JWTValidator, token *jwt.JSONW
 	// 	return false
 	// }
 	//
-	// if strings.Contains(claims["scope"].(string), "read:user") {
+	// if strings.Contains(claims["scope"].(string), "read:rules") {
 	// 	return true
 	// } else {
 	// 	return false
