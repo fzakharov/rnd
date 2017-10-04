@@ -14,6 +14,7 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import Quasar from 'quasar'
 import router from './router'
+import Factsfeed from './components/Factsfeed'
 // import AuthService from './auth/AuthService'
 
 // const auth = new AuthService()
@@ -21,6 +22,7 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.use(Quasar) // Install Quasar Framework
+Vue.component('factsfeed', Factsfeed)
 
 if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')

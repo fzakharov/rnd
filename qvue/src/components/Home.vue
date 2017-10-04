@@ -9,6 +9,7 @@
     <q-btn @click="ping()">public</q-btn>
     <q-btn @click="securedPing()" v-if="authenticated">private</q-btn>
     <h5>{{ message }}</h5>
+    <factsfeed></factsfeed>
   </div>
 </template>
 
