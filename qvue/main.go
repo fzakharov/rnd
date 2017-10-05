@@ -16,9 +16,15 @@ const auth0ApiIssuer = "https://chronolog.eu.auth0.com/"
 
 var auth0ApiAudience = []string{"https://chronolog.eu.auth0.com/api/v2/"}
 
+type Fact struct {
+	ID    string `json:"id"`
+	Title string `json:"title"`
+}
+
 // Response to frontend
 type Response struct {
 	Message string `json:"message"`
+	Facts   []Fact `json:"facts"`
 }
 
 func main() {
@@ -34,7 +40,8 @@ func main() {
 		} else {
 
 			response := Response{
-				Message: "Hello from a public endpoint! You don't need to be authenticated to see this.",
+				Message: "From public",
+				Facts:   []Fact{{"1", "Dinner"}, {"2", "Tea"}},
 			}
 
 			// TODO: copypaste headers init
