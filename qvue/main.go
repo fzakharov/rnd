@@ -1,9 +1,13 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+
+	_ "github.com/lib/pq"
 
 	auth0 "github.com/auth0-community/go-auth0"
 	"github.com/gorilla/mux"
@@ -17,7 +21,7 @@ const auth0ApiIssuer = "https://chronolog.eu.auth0.com/"
 var auth0ApiAudience = []string{"https://chronolog.eu.auth0.com/api/v2/"}
 
 type Fact struct {
-	ID    string `json:"id"`
+	ID    int    `json:"id"`
 	Title string `json:"title"`
 }
 
@@ -25,6 +29,39 @@ type Fact struct {
 type Response struct {
 	Message string `json:"message"`
 	Facts   []Fact `json:"facts"`
+}
+
+func fatalOnErr(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func getFacts() []Fact {
+	db, err := sql.Open("postgres",
+		"postgres://developer:dev@localhost:5432/chrono_dev_db?sslmode=disable")
+	fatalOnErr(err)
+
+	rows, err := db.Query("SELECT * FROM facts")
+
+	fatalOnErr(err)
+	defer rows.Close()
+
+	var facts []Fact
+
+	for rows.Next() {
+		var factID int
+		var factTypeID int
+		var description string
+
+		err = rows.Scan(&description, &factTypeID, &factID)
+		facts = append(facts, Fact{ID: factID, Title: description})
+	}
+
+	err = rows.Err()
+	fatalOnErr(err)
+
+	return facts
 }
 
 func main() {
@@ -40,8 +77,7 @@ func main() {
 		} else {
 
 			response := Response{
-				Message: "From public",
-				Facts:   []Fact{{"1", "Dinner"}, {"2", "Tea"}},
+				Message: "Public  call: No access",
 			}
 
 			// TODO: copypaste headers init
@@ -58,7 +94,8 @@ func main() {
 	// valid token and scope.
 	r.Handle("/api/private", checkJwt(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		response := Response{
-			Message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.",
+			Message: "From public",
+			Facts:   getFacts(),
 		}
 
 		w.Header().Set("Content-Type", "application/json")
