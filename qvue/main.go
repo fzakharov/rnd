@@ -20,6 +20,7 @@ const auth0ApiIssuer = "https://chronolog.eu.auth0.com/"
 
 var auth0ApiAudience = []string{"https://chronolog.eu.auth0.com/api/v2/"}
 
+// Fact DTO
 type Fact struct {
 	ID    int    `json:"id"`
 	Title string `json:"title"`
