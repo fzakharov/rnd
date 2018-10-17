@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-list highlight>
-      <q-list-header>Facts feed</q-list-header>
+      <q-list-header>{{message}}</q-list-header>
       <q-item v-for="fact in facts" :key="fact.id">
         <q-item-side stamp>{{fact.id}}</q-item-side>
         <q-item-main>
@@ -44,7 +44,8 @@ export default {
   name: 'factsfeed',
   data: function () {
     return {
-      facts: []
+      facts: [],
+      message: ''
     }
   },
   mounted: function () {
