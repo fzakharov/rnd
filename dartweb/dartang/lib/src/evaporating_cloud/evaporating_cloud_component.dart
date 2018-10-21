@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 
-import 'evaporating_cloud_service.dart';
-
 @Component(
   selector: 'evaporating-cloud',
   styleUrls: ['evaporating_cloud_component.css'],
@@ -17,19 +15,16 @@ import 'evaporating_cloud_service.dart';
     NgFor,
     NgIf,
   ],
-  providers: [const ClassProvider(EvaporatingCloudService)],
 )
 class EvaporatingCloudComponent implements OnInit {
-  final EvaporatingCloudService evaporatingCloudService;
-
   List<String> items = [];
   String newTodo = '';
 
-  EvaporatingCloudComponent(this.evaporatingCloudService);
+  EvaporatingCloudComponent();
 
   @override
   Future<Null> ngOnInit() async {
-    items = await evaporatingCloudService.getTodoList();
+
   }
 
   void add() {
