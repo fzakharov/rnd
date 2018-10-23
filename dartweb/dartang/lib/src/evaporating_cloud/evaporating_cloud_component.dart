@@ -8,29 +8,24 @@ import 'package:angular_components/angular_components.dart';
   styleUrls: ['evaporating_cloud_component.css'],
   templateUrl: 'evaporating_cloud_component.html',
   directives: [
-    MaterialCheckboxComponent,
-    MaterialFabComponent,
-    MaterialIconComponent,
     materialInputDirectives,
     NgFor,
     NgIf,
   ],
 )
 class EvaporatingCloudComponent implements OnInit {
-  List<String> items = [];
-  String newTodo = '';
+    EvaporatingCloudComponent();
 
-  EvaporatingCloudComponent();
+    String Objective;
+
+    String Title = 'no';
 
   @override
   Future<Null> ngOnInit() async {
-
+    Objective = "Цель ...";
   }
 
-  void add() {
-    items.add(newTodo);
-    newTodo = '';
+  update() async {
+    Title = 'Для того чтобы ' + Objective + ' мы должны...';
   }
-
-  String remove(int index) => items.removeAt(index);
 }

@@ -1,9 +1,10 @@
+<h1>{{Title}}</h1>
 <div class="table">
   <div class="row">
       <div class="nocell"></div>
       <div class="nocell"></div>
       <div class="cell">
-        <material-input label="A" floatingLabel style="width:80%"></material-input>
+        <material-input label="B" floatingLabel style="width:80%"></material-input>
       </div>
       <div class="nocell"></div>
       <div class="cell">
@@ -12,7 +13,7 @@
   </div>
   <div class="row">
     <div class="cell">
-      <material-input label="Objective" floatingLabel style="width:80%"></material-input>
+      <material-input label="A" [(ngModel)]="Objective" (change)="update()" floatingLabel style="width:80%"></material-input>
     </div>
     <div class="nocell"></div>
     <div class="nocell"></div>
@@ -23,7 +24,7 @@
     <div class="nocell"></div>
     <div class="nocell"></div>
     <div class="cell">
-      <material-input label="B" floatingLabel style="width:80%"></material-input>
+      <material-input label="C" floatingLabel style="width:80%"></material-input>
     </div>
     <div class="nocell"></div>
     <div class="cell">
