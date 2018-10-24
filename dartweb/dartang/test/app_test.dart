@@ -19,5 +19,6 @@ void main() {
     expect(fixture.text, contains('My First AngularDart App'));
   });
 
+  // pub run build_runner test --fail-on-severe -- -p chrome
   // Testing info: https://webdev.dartlang.org/angular/guide/testing
 }
