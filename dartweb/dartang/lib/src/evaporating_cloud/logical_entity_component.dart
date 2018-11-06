@@ -10,19 +10,11 @@ import 'package:dartang/src/evaporating_cloud/LogicalEntity.dart';
   templateUrl: 'logical_entity_component.html',
   directives: [
     materialInputDirectives,
-    NgIf,
   ],
 )
-class LogicalEntityComponent implements OnInit {
+class LogicalEntityComponent {
   LogicalEntityComponent();
 
   @Input()
   LogicalEntity entity;
-
-  @override
-  Future<Null> ngOnInit() async {
-    //entity = new LogicalEntity();
-    //entity.Label='ddd';
-    //entity.Expression='sdsdsdsd';
-  }
 }

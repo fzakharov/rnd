@@ -4,16 +4,16 @@
       <div class="nocell"></div>
       <div class="nocell"></div>
       <div class="cell">
-        <material-input label="B" floatingLabel style="width:80%"></material-input>
+        <logical-entity [(entity)]="bRequirement" floatingLabel style="width:80%"></logical-entity>
       </div>
       <div class="nocell"></div>
       <div class="cell">
-        <material-input label="D" floatingLabel style="width:80%"></material-input>
+        <logical-entity [(entity)]="dPrerequisite" floatingLabel style="width:80%"></logical-entity>
       </div>
   </div>
   <div class="row">
     <div class="cell">
-      <logical-entity [entity]="objective"></logical-entity>
+      <logical-entity [(entity)]="objective" floatingLabel style="width:80%"></logical-entity>
     </div>
     <div class="nocell"></div>
     <div class="nocell"></div>
@@ -24,11 +24,23 @@
     <div class="nocell"></div>
     <div class="nocell"></div>
     <div class="cell">
-      <material-input label="C" floatingLabel style="width:80%"></material-input>
+      <logical-entity [(entity)]="cRequirement" floatingLabel style="width:80%"></logical-entity>
     </div>
     <div class="nocell"></div>
     <div class="cell">
-      <material-input label="D'" floatingLabel style="width:80%"></material-input>
+      <logical-entity [(entity)]="dAltPrerequisite" floatingLabel style="width:80%"></logical-entity>
     </div>
+  </div>
+  <div class="row">
+    Для того чтобы {{objective.expression}} мы должны {{bRequirement.expression}}
+  </div>
+  <div class="row">
+    Для того чтобы {{bRequirement.expression}} мы должны {{dPrerequisite.expression}}
+  </div>
+  <div class="row">
+    Для того чтобы {{objective.expression}} мы должны {{cRequirement.expression}}
+  </div>
+  <div class="row">
+    Для того чтобы {{cRequirement.expression}} мы должны {{dAltPrerequisite.expression}}
   </div>
 </div>

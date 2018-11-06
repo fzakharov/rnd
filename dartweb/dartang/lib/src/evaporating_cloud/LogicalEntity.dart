@@ -1,5 +1,5 @@
 class LogicalEntity
 {
-  String Expression;
-  String Label;
+  String expression;
+  String label;
 }
