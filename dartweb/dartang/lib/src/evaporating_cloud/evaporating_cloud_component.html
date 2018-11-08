@@ -4,16 +4,16 @@
       <div class="nocell"></div>
       <div class="nocell"></div>
       <div class="cell">
-        <logical-entity [(entity)]="bRequirement" floatingLabel style="width:80%"></logical-entity>
+        <logical-entity [(entity)]="b" floatingLabel style="width:80%"></logical-entity>
       </div>
       <div class="nocell"></div>
       <div class="cell">
-        <logical-entity [(entity)]="dPrerequisite" floatingLabel style="width:80%"></logical-entity>
+        <logical-entity [(entity)]="d" floatingLabel style="width:80%"></logical-entity>
       </div>
   </div>
   <div class="row">
     <div class="cell">
-      <logical-entity [(entity)]="objective" floatingLabel style="width:80%"></logical-entity>
+      <logical-entity [(entity)]="a" floatingLabel style="width:80%"></logical-entity>
     </div>
     <div class="nocell"></div>
     <div class="nocell"></div>
@@ -24,23 +24,23 @@
     <div class="nocell"></div>
     <div class="nocell"></div>
     <div class="cell">
-      <logical-entity [(entity)]="cRequirement" floatingLabel style="width:80%"></logical-entity>
+      <logical-entity [(entity)]="c" floatingLabel style="width:80%"></logical-entity>
     </div>
     <div class="nocell"></div>
     <div class="cell">
-      <logical-entity [(entity)]="dAltPrerequisite" floatingLabel style="width:80%"></logical-entity>
+      <logical-entity [(entity)]="dAlt" floatingLabel style="width:80%"></logical-entity>
     </div>
   </div>
   <div class="row">
-    Для того чтобы {{objective.expression}} мы должны {{bRequirement.expression}}
+    Для того чтобы {{a.expression}} {{ab.expression}} {{b.expression}}
   </div>
   <div class="row">
-    Для того чтобы {{bRequirement.expression}} мы должны {{dPrerequisite.expression}}
+    Для того чтобы {{b.expression}} {{bd.expression}} {{d.expression}}
   </div>
   <div class="row">
-    Для того чтобы {{objective.expression}} мы должны {{cRequirement.expression}}
+    Для того чтобы {{a.expression}} {{ac.expression}} {{c.expression}}
   </div>
   <div class="row">
-    Для того чтобы {{cRequirement.expression}} мы должны {{dAltPrerequisite.expression}}
+    Для того чтобы {{c.expression}} {{cdAlt.expression}} {{dAlt.expression}}
   </div>
 </div>

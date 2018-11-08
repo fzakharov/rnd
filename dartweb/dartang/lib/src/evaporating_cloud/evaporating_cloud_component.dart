@@ -17,34 +17,38 @@ import 'package:dartang/src/evaporating_cloud/logical_entity_component.dart';
   ],
 )
 class EvaporatingCloudComponent implements OnInit, OnChanges {
-    EvaporatingCloudComponent();
+  LogicalEntity a;
+  LogicalEntity b;
+  LogicalEntity c;
+  LogicalEntity d;
+  LogicalEntity dAlt;
+  LinkLogicalEntity ab;
+  LinkLogicalEntity ac;
+  LinkLogicalEntity bd;
+  LinkLogicalEntity cdAlt;
 
-    LogicalEntity objective;
-    LogicalEntity bRequirement;
-    LogicalEntity dPrerequisite;
-    LogicalEntity cRequirement;
-    LogicalEntity dAltPrerequisite;
+  EvaporatingCloudComponent() {
+    a = new LogicalEntity();
+    b = new LogicalEntity();
+    c = new LogicalEntity();
+    d = new LogicalEntity();
+    dAlt = new LogicalEntity();
+    ab = new LinkLogicalEntity(a, b);
+    ac = new LinkLogicalEntity(a, c);
+    bd = new LinkLogicalEntity(b, d);
+    cdAlt = new LinkLogicalEntity(c, dAlt);
 
-    String Title = 'no';
+    ac.expression =
+        bd.expression = cdAlt.expression = ab.expression = "мы должны";
+  }
+
+  String Title = 'no';
 
   @override
-  Future<Null> ngOnInit() async {
-    objective = new LogicalEntity();
-    bRequirement = new LogicalEntity();
-    dPrerequisite = new LogicalEntity();
-    cRequirement = new LogicalEntity();
-    dAltPrerequisite = new LogicalEntity();
-
-    objective.label = 'Цель:';
-    objective.expression = 'что бы как бы';
-  }
-
-  update() async {
-    Title = 'Для того чтобы ' + objective.expression + ' мы должны...';
-  }
+  Future<Null> ngOnInit() async {}
 
   @override
   void ngOnChanges(Map<String, SimpleChange> changes) {
-    Title = 'Для того чтобы ' + objective.expression + ' мы должны...';
+    // TODO: implement ngOnChanges
   }
 }
