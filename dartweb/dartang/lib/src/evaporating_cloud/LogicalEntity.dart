@@ -6,8 +6,7 @@ class LogicalEntity
 
 class LinkLogicalEntity extends LogicalEntity
 {
-  LinkLogicalEntity(this.from, this.to){
-  }
+  LinkLogicalEntity(this.from, this.to){  }
 
   LogicalEntity from;
   LogicalEntity to;

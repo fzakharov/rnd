@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:dartang/src/evaporating_cloud/LogicalEntity.dart';

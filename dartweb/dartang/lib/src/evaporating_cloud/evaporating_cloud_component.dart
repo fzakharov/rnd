@@ -26,6 +26,7 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
   LinkLogicalEntity ac;
   LinkLogicalEntity bd;
   LinkLogicalEntity cdAlt;
+  String prefixExpression = "Для того чтобы";
 
   EvaporatingCloudComponent() {
     a = new LogicalEntity();
@@ -33,6 +34,7 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
     c = new LogicalEntity();
     d = new LogicalEntity();
     dAlt = new LogicalEntity();
+
     ab = new LinkLogicalEntity(a, b);
     ac = new LinkLogicalEntity(a, c);
     bd = new LinkLogicalEntity(b, d);
@@ -42,13 +44,10 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
         bd.expression = cdAlt.expression = ab.expression = "мы должны";
   }
 
-  String Title = 'no';
-
   @override
   Future<Null> ngOnInit() async {}
 
   @override
   void ngOnChanges(Map<String, SimpleChange> changes) {
-    // TODO: implement ngOnChanges
   }
 }
