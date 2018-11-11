@@ -1,2 +1,2 @@
 # rnd
-Research and development branch
+rnd
