@@ -11,6 +11,8 @@ class EnterEntity extends Entity {
 class LinkEntity extends Entity {
   StatementEntity to;
   StatementEntity from;
+
+  LinkEntity(this.from, this.to);
 }
 
 class ObjectiveEntity extends StatementEntity {}
@@ -28,25 +30,31 @@ class EvaporatingCloud extends Entity {
   EnterEntity objectiveEnter = new EnterEntity();
   EnterEntity bNeedEnter = new EnterEntity();
   EnterEntity cNeedEnter = new EnterEntity();
+  LinkEntity abLink;
+  LinkEntity bdLink;
 
   EvaporatingCloud() {
     objectiveEnter.to = objective;
     bNeedEnter.to = bNeed;
     cNeedEnter.to = cNeed;
+    abLink = new LinkEntity(objective, bNeed);
+    bdLink = new LinkEntity(bNeed, dWand);
   }
 }
 
 class ABValidationExpression{
   EvaporatingCloud cloud;
 
-  ABValidationExpression(EvaporatingCloud this.cloud){
-  }
+  ABValidationExpression(EvaporatingCloud this.cloud);
 
   List<Entity> getExpressionChain(){
     final List<Entity> exp = [];
     exp.add(cloud.objectiveEnter);
     exp.add(cloud.objective);
-    //exp.add(cloud);
+    exp.add(cloud.abLink);
+    exp.add(cloud.bNeed);
+    exp.add(cloud.bdLink);
+    exp.add(cloud.dWand);
 
     return exp;
   }

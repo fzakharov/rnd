@@ -1,29 +1,24 @@
 <div class="wrapper">
   <div></div>
   <div></div>
-  <logical-entity [(entity)]="b"></logical-entity>
+  <logical-entity [(entity)]="cloud.bNeed"></logical-entity>
   <div></div>
-  <logical-entity [(entity)]="d"></logical-entity>
-  <logical-entity [(entity)]="a"></logical-entity>
-  <div></div>
-  <div></div>
+  <logical-entity [(entity)]="cloud.dWand"></logical-entity>
+  <logical-entity [(entity)]="cloud.objective"></logical-entity>
   <div></div>
   <div></div>
   <div></div>
   <div></div>
-  <logical-entity [(entity)]="c"></logical-entity>
   <div></div>
-  <logical-entity [(entity)]="dAlt"></logical-entity>
+  <div></div>
+  <logical-entity [(entity)]="cloud.cNeed"></logical-entity>
+  <div></div>
+  <logical-entity [(entity)]="cloud.dAltWant"></logical-entity>
 </div>
 <div>
-  {{prefixExpression}} {{a.expression}} {{ab.expression}} {{b.expression}}
-</div>
-<div>
-  {{prefixExpression}} {{b.expression}} {{bd.expression}} {{d.expression}}
-</div>
-<div>
-  {{prefixExpression}} {{a.expression}} {{ac.expression}} {{c.expression}}
-</div>
-<div>
-  {{prefixExpression}} {{c.expression}} {{cdAlt.expression}} {{dAlt.expression}}
+  <ul>
+    <li *ngFor="let part of abExp.getExpressionChain()">
+      {{ part.expression }}
+    </li>
+  </ul>
 </div>

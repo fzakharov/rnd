@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
-import 'package:dartang/src/evaporating_cloud/LogicalEntity.dart';
+import 'package:dartang/src/model/Entity.dart';
 
 @Component(
   selector: 'logical-entity',
@@ -14,5 +14,5 @@ class LogicalEntityComponent {
   LogicalEntityComponent();
 
   @Input()
-  LogicalEntity entity;
+  StatementEntity entity;
 }
