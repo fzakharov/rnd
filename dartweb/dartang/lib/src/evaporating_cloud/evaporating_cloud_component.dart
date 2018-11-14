@@ -15,6 +15,7 @@ import 'package:dartang/src/model/Entity.dart';
     NgIf,
     LogicalEntityComponent,
   ],
+  pipes: [commonPipes],
 )
 class EvaporatingCloudComponent implements OnInit, OnChanges {
   

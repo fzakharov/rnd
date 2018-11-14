@@ -39,22 +39,25 @@ class EvaporatingCloud extends Entity {
     cNeedEnter.to = cNeed;
     abLink = new LinkEntity(objective, bNeed);
     bdLink = new LinkEntity(bNeed, dWand);
+
+    objectiveEnter.expression = "Для того, чтобы";
+    abLink.expression = "мы должны";
+    objective.expression = "цель";
+    bNeed.expression = "условие";
   }
 }
 
-class ABValidationExpression{
+class ABValidationExpression {
   EvaporatingCloud cloud;
 
   ABValidationExpression(EvaporatingCloud this.cloud);
 
-  List<Entity> getExpressionChain(){
+  List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
     exp.add(cloud.objectiveEnter);
     exp.add(cloud.objective);
     exp.add(cloud.abLink);
     exp.add(cloud.bNeed);
-    exp.add(cloud.bdLink);
-    exp.add(cloud.dWand);
 
     return exp;
   }
