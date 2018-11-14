@@ -1,24 +1,22 @@
 <div class="wrapper">
-  <div></div>
-  <div></div>
+  <div>1</div>
+  <div>2</div>
   <logical-entity [(entity)]="cloud.bNeed"></logical-entity>
-  <div></div>
+  <div>4</div>
   <logical-entity [(entity)]="cloud.dWand"></logical-entity>
   <logical-entity [(entity)]="cloud.objective"></logical-entity>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div>7</div>
+  <div>8</div>
+  <div>9</div>
+  <div>10</div>
+  <div>11</div>
+  <div>12</div>
   <logical-entity [(entity)]="cloud.cNeed"></logical-entity>
-  <div></div>
+  <div>14</div>
   <logical-entity [(entity)]="cloud.dAltWant"></logical-entity>
 </div>
 <div>
-  <ul>
-    <li *ngFor="let part of abExp.getExpressionChain()">
+    <div class="horizontal" *ngFor="let part of abExp.getExpressionChain()">
       {{ part.expression }}
-    </li>
-  </ul>
+    </div>
 </div>
