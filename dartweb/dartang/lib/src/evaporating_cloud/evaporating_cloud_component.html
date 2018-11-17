@@ -20,3 +20,8 @@
       {{ part.expression + ' ' }}
     </div>
 </div>
+<div>
+  <div class="horizontal" *ngFor="let part of acExp.getExpressionChain()">
+    {{ part.expression + ' ' }}
+  </div>
+</div>
