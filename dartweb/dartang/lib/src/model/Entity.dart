@@ -25,7 +25,7 @@ class EvaporatingCloud extends Entity {
   ObjectiveEntity objective = new ObjectiveEntity();
   NeedEntity bNeed = new NeedEntity();
   NeedEntity cNeed = new NeedEntity();
-  WantEntity dWand = new WantEntity();
+  WantEntity dWant = new WantEntity();
   WantEntity dAltWant = new WantEntity();
   EnterEntity objectiveEnter = new EnterEntity();
   EnterEntity bNeedEnter = new EnterEntity();
@@ -41,7 +41,7 @@ class EvaporatingCloud extends Entity {
     bNeedEnter.to = bNeed;
     cNeedEnter.to = cNeed;
     abLink = new LinkEntity(objective, bNeed);
-    bdLink = new LinkEntity(bNeed, dWand);
+    bdLink = new LinkEntity(bNeed, dWant);
 
     acLink = new LinkEntity(objective, cNeed);
     cdAltLink = new LinkEntity(cNeed, dAltWant);
@@ -52,6 +52,14 @@ class EvaporatingCloud extends Entity {
     bNeed.expression = "условие";
     acLink.expression = "мы должны";
     cNeed.expression = "условие";
+
+    bNeedEnter.expression = "Для того, чтобы";
+    bdLink.expression = "мы должны";
+    dWant.expression = "делать";
+
+    cNeedEnter.expression = "Для того, чтобы";
+    cdAltLink.expression = "мы должны";
+    dAltWant.expression = "делать";
   }
 }
 
@@ -82,6 +90,38 @@ class ACValidationExpression {
     exp.add(cloud.objective);
     exp.add(cloud.acLink);
     exp.add(cloud.cNeed);
+
+    return exp;
+  }
+}
+
+class BDValidationExpression {
+  EvaporatingCloud cloud;
+
+  BDValidationExpression(EvaporatingCloud this.cloud);
+
+  List<Entity> getExpressionChain() {
+    final List<Entity> exp = [];
+    exp.add(cloud.bNeedEnter);
+    exp.add(cloud.bNeed);
+    exp.add(cloud.bdLink);
+    exp.add(cloud.dWant);
+
+    return exp;
+  }
+}
+
+class CDAltValidationExpression {
+  EvaporatingCloud cloud;
+
+  CDAltValidationExpression(EvaporatingCloud this.cloud);
+
+  List<Entity> getExpressionChain() {
+    final List<Entity> exp = [];
+    exp.add(cloud.cNeedEnter);
+    exp.add(cloud.cNeed);
+    exp.add(cloud.cdAltLink);
+    exp.add(cloud.dAltWant);
 
     return exp;
   }

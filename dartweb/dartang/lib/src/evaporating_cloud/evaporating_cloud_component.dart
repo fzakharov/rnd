@@ -24,11 +24,15 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
   String prefixExpression = "Для того чтобы";
   ABValidationExpression abExp;
   ACValidationExpression acExp;
+  BDValidationExpression bdExp;
+  CDAltValidationExpression cdAltExp;
 
   EvaporatingCloudComponent() {
     cloud = new EvaporatingCloud();
     abExp = new ABValidationExpression(cloud);
     acExp = new ACValidationExpression(cloud);
+    bdExp = new BDValidationExpression(cloud);
+    cdAltExp = new CDAltValidationExpression(cloud);
   }
 
   @override

@@ -3,7 +3,7 @@
   <div>2</div>
   <logical-entity [(entity)]="cloud.bNeed"></logical-entity>
   <div>4</div>
-  <logical-entity [(entity)]="cloud.dWand"></logical-entity>
+  <logical-entity [(entity)]="cloud.dWant"></logical-entity>
   <logical-entity [(entity)]="cloud.objective"></logical-entity>
   <div>7</div>
   <div>8</div>
@@ -22,6 +22,16 @@
 </div>
 <div>
   <div class="horizontal" *ngFor="let part of acExp.getExpressionChain()">
+    {{ part.expression + ' ' }}
+  </div>
+</div>
+<div>
+  <div class="horizontal" *ngFor="let part of bdExp.getExpressionChain()">
+    {{ part.expression + ' ' }}
+  </div>
+</div>
+<div>
+  <div class="horizontal" *ngFor="let part of cdAltExp.getExpressionChain()">
     {{ part.expression + ' ' }}
   </div>
 </div>
