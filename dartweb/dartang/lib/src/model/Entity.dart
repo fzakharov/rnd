@@ -47,9 +47,11 @@ class EvaporatingCloud extends Entity {
     cdAltLink = new LinkEntity(cNeed, dAltWant);
 
     objectiveEnter.expression = "Для того, чтобы";
-    abLink.expression = "мы должны";
     objective.expression = "цель";
+    abLink.expression = "мы должны";
     bNeed.expression = "условие";
+    acLink.expression = "мы должны";
+    cNeed.expression = "условие";
   }
 }
 
