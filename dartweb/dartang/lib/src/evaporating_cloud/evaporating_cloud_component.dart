@@ -30,6 +30,9 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
   CDAltValidationExpression cdAltExp;
   DDAltValidationExpression ddAltExp;
 
+  DCValidationExpression dcExp;
+  DAltBValidationExpression dAltbExp;
+
   EvaporatingCloudComponent() {
     cloud = new EvaporatingCloud();
     abExp = new ABValidationExpression(cloud);
@@ -37,6 +40,9 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
     bdExp = new BDValidationExpression(cloud);
     cdAltExp = new CDAltValidationExpression(cloud);
     ddAltExp = new DDAltValidationExpression(cloud);
+
+    dcExp = new DCValidationExpression(cloud);
+    dAltbExp = new DAltBValidationExpression(cloud);
   }
 
   @override
