@@ -16,22 +16,14 @@
   <logical-entity [(entity)]="cloud.dAltWant"></logical-entity>
 </div>
 <div>
-    <div class="horizontal" *ngFor="let part of abExp.getExpressionChain()">
-      {{ part.expression + ' ' }}
-    </div>
+  <validation-expression [(validationExpression)]="abExp"></validation-expression>
 </div>
 <div>
-  <div class="horizontal" *ngFor="let part of acExp.getExpressionChain()">
-    {{ part.expression + ' ' }}
-  </div>
+  <validation-expression [(validationExpression)]="acExp"></validation-expression>
 </div>
 <div>
-  <div class="horizontal" *ngFor="let part of bdExp.getExpressionChain()">
-    {{ part.expression + ' ' }}
-  </div>
+  <validation-expression [(validationExpression)]="bdExp"></validation-expression>
 </div>
 <div>
-  <div class="horizontal" *ngFor="let part of cdAltExp.getExpressionChain()">
-    {{ part.expression + ' ' }}
-  </div>
+  <validation-expression [(validationExpression)]="cdAltExp"></validation-expression>
 </div>

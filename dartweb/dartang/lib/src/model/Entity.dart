@@ -63,7 +63,11 @@ class EvaporatingCloud extends Entity {
   }
 }
 
-class ABValidationExpression {
+abstract class ValidationExpression {
+  List<Entity> getExpressionChain();
+}
+
+class ABValidationExpression implements ValidationExpression {
   EvaporatingCloud cloud;
 
   ABValidationExpression(EvaporatingCloud this.cloud);
@@ -79,7 +83,7 @@ class ABValidationExpression {
   }
 }
 
-class ACValidationExpression {
+class ACValidationExpression implements ValidationExpression {
   EvaporatingCloud cloud;
 
   ACValidationExpression(EvaporatingCloud this.cloud);
@@ -95,7 +99,7 @@ class ACValidationExpression {
   }
 }
 
-class BDValidationExpression {
+class BDValidationExpression implements ValidationExpression {
   EvaporatingCloud cloud;
 
   BDValidationExpression(EvaporatingCloud this.cloud);
@@ -111,7 +115,7 @@ class BDValidationExpression {
   }
 }
 
-class CDAltValidationExpression {
+class CDAltValidationExpression implements ValidationExpression {
   EvaporatingCloud cloud;
 
   CDAltValidationExpression(EvaporatingCloud this.cloud);
