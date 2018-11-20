@@ -35,6 +35,7 @@ class EvaporatingCloud extends Entity {
 
   LinkEntity acLink;
   LinkEntity cdAltLink;
+  LinkEntity ddAltLink;
 
   EvaporatingCloud() {
     objectiveEnter.to = objective;
@@ -45,6 +46,7 @@ class EvaporatingCloud extends Entity {
 
     acLink = new LinkEntity(objective, cNeed);
     cdAltLink = new LinkEntity(cNeed, dAltWant);
+    ddAltLink = new LinkEntity(dWant, dAltWant);
 
     objectiveEnter.expression = "Для того, чтобы";
     objective.expression = "цель";
@@ -60,6 +62,8 @@ class EvaporatingCloud extends Entity {
     cNeedEnter.expression = "Для того, чтобы";
     cdAltLink.expression = "мы должны";
     dAltWant.expression = "делать";
+
+    ddAltLink.expression = "в конфликте с";
   }
 }
 
@@ -125,6 +129,21 @@ class CDAltValidationExpression implements ValidationExpression {
     exp.add(cloud.cNeedEnter);
     exp.add(cloud.cNeed);
     exp.add(cloud.cdAltLink);
+    exp.add(cloud.dAltWant);
+
+    return exp;
+  }
+}
+
+class DDAltValidationExpression implements ValidationExpression {
+  EvaporatingCloud cloud;
+
+  DDAltValidationExpression(EvaporatingCloud this.cloud);
+
+  List<Entity> getExpressionChain() {
+    final List<Entity> exp = [];
+    exp.add(cloud.dWant);
+    exp.add(cloud.ddAltLink);
     exp.add(cloud.dAltWant);
 
     return exp;
