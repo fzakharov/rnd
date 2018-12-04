@@ -6,13 +6,13 @@ class StatementEntity extends Entity {}
 
 class EnterEntity extends Entity {
   StatementEntity to;
+  EnterEntity(this.to);
 }
 
-class LinkEntity extends Entity {
-  StatementEntity to;
+class LinkEntity extends EnterEntity {
   StatementEntity from;
 
-  LinkEntity(this.from, this.to);
+  LinkEntity(this.from, StatementEntity to) : super(to);
 }
 
 class ObjectiveEntity extends StatementEntity {}
@@ -27,9 +27,9 @@ class EvaporatingCloud extends Entity {
   NeedEntity cNeed = new NeedEntity();
   WantEntity dWant = new WantEntity();
   WantEntity dAltWant = new WantEntity();
-  EnterEntity objectiveEnter = new EnterEntity();
-  EnterEntity bNeedEnter = new EnterEntity();
-  EnterEntity cNeedEnter = new EnterEntity();
+  EnterEntity objectiveEnter;
+  EnterEntity bNeedEnter;
+  EnterEntity cNeedEnter;
   LinkEntity abLink;
   LinkEntity bdLink;
 
@@ -41,9 +41,10 @@ class EvaporatingCloud extends Entity {
   LinkEntity dAltbLink;
 
   EvaporatingCloud() {
-    objectiveEnter.to = objective;
-    bNeedEnter.to = bNeed;
-    cNeedEnter.to = cNeed;
+    objectiveEnter = new EnterEntity(objective);
+    bNeedEnter = new EnterEntity(bNeed);
+    cNeedEnter = new EnterEntity(cNeed);
+   
     abLink = new LinkEntity(objective, bNeed);
     bdLink = new LinkEntity(bNeed, dWant);
 
@@ -53,22 +54,23 @@ class EvaporatingCloud extends Entity {
 
     dcLink = new LinkEntity(dWant, cNeed);
     dAltbLink = new LinkEntity(dAltWant, bNeed);
+
     dcLink.expression = dAltbLink.expression = "ставит под угрозу";
 
     objectiveEnter.expression = "Для того, чтобы";
     objective.expression = "цель";
     abLink.expression = "мы должны";
-    bNeed.expression = "условие";
+    bNeed.expression = "условие b";
     acLink.expression = "мы должны";
-    cNeed.expression = "условие";
+    cNeed.expression = "условие c";
 
     bNeedEnter.expression = "Для того, чтобы";
     bdLink.expression = "мы должны";
-    dWant.expression = "делать";
+    dWant.expression = "делать d";
 
     cNeedEnter.expression = "Для того, чтобы";
     cdAltLink.expression = "мы должны";
-    dAltWant.expression = "делать";
+    dAltWant.expression = "делать d'";
 
     ddAltLink.expression = "в конфликте с";
   }
@@ -86,9 +88,9 @@ class ABValidationExpression implements ValidationExpression {
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
     exp.add(cloud.objectiveEnter);
-    exp.add(cloud.objective);
+    exp.add(cloud.objectiveEnter.to);
     exp.add(cloud.abLink);
-    exp.add(cloud.bNeed);
+    exp.add(cloud.abLink.to);
 
     return exp;
   }
@@ -102,9 +104,9 @@ class ACValidationExpression implements ValidationExpression {
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
     exp.add(cloud.objectiveEnter);
-    exp.add(cloud.objective);
+    exp.add(cloud.objectiveEnter.to);
     exp.add(cloud.acLink);
-    exp.add(cloud.cNeed);
+    exp.add(cloud.acLink.to);
 
     return exp;
   }
@@ -118,9 +120,9 @@ class BDValidationExpression implements ValidationExpression {
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
     exp.add(cloud.bNeedEnter);
-    exp.add(cloud.bNeed);
+    exp.add(cloud.bNeedEnter.to);
     exp.add(cloud.bdLink);
-    exp.add(cloud.dWant);
+    exp.add(cloud.bdLink.to);
 
     return exp;
   }
@@ -134,9 +136,9 @@ class CDAltValidationExpression implements ValidationExpression {
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
     exp.add(cloud.cNeedEnter);
-    exp.add(cloud.cNeed);
+    exp.add(cloud.cNeedEnter.to);
     exp.add(cloud.cdAltLink);
-    exp.add(cloud.dAltWant);
+    exp.add(cloud.cdAltLink.to);
 
     return exp;
   }
@@ -149,9 +151,9 @@ class DDAltValidationExpression implements ValidationExpression {
 
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
-    exp.add(cloud.dWant);
+    exp.add(cloud.ddAltLink.from);
     exp.add(cloud.ddAltLink);
-    exp.add(cloud.dAltWant);
+    exp.add(cloud.ddAltLink.to);
 
     return exp;
   }
@@ -164,9 +166,9 @@ class DCValidationExpression implements ValidationExpression {
 
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
-    exp.add(cloud.dWant);
+    exp.add(cloud.dcLink.from);
     exp.add(cloud.dcLink);
-    exp.add(cloud.cNeed);
+    exp.add(cloud.dcLink.to);
 
     return exp;
   }
@@ -179,9 +181,9 @@ class DAltBValidationExpression implements ValidationExpression {
 
   List<Entity> getExpressionChain() {
     final List<Entity> exp = [];
-    exp.add(cloud.dAltWant);
+    exp.add(cloud.dAltbLink.from);
     exp.add(cloud.dAltbLink);
-    exp.add(cloud.bNeed);
+    exp.add(cloud.dAltbLink.to);
 
     return exp;
   }
