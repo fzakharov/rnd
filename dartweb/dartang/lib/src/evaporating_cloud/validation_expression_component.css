@@ -1,4 +1,7 @@
+.center{
+  text-align: center;
+}
 .horizontal{
-    display: inline;
-    text-align:center;
-  }
+  font-size: small;
+  display: inline;
+}
