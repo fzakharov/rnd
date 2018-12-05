@@ -1,38 +1,32 @@
-<div>
-  <validation-expression [(validationExpression)]="abExp"></validation-expression>
-</div>
-<div>
-  <validation-expression [(validationExpression)]="bdExp"></validation-expression>
-</div>
-<div>
-  <validation-expression [(validationExpression)]="dcExp"></validation-expression>
-</div>
-<div class="wrapper">
-  <div>1</div>
-  <div>2</div>
-  <logical-entity [(entity)]="cloud.bNeed"></logical-entity>
-  <div>4</div>
-  <logical-entity [(entity)]="cloud.dWant"></logical-entity>
-  <logical-entity [(entity)]="cloud.objective"></logical-entity>
-  <div>7</div>
-  <div>8</div>
-  <div>9</div>
-  <div>10</div>
-  <div>11</div>
-  <div>12</div>
-  <logical-entity [(entity)]="cloud.cNeed"></logical-entity>
-  <div>14</div>
-  <logical-entity [(entity)]="cloud.dAltWant"></logical-entity>
-</div>
-<div>
-  <validation-expression [(validationExpression)]="acExp"></validation-expression>
-</div>
-<div>
-  <validation-expression [(validationExpression)]="cdAltExp"></validation-expression>
-</div>
-<div>
-  <validation-expression [(validationExpression)]="dAltbExp"></validation-expression>
-</div>
-<div>
-  <validation-expression [(validationExpression)]="ddAltExp"></validation-expression>
-</div>
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td colspan="3"><validation-expression [(validationExpression)]="bdExp"></validation-expression></td>
+  </tr>
+  <tr>
+    <td colspan="2"><validation-expression [(validationExpression)]="abExp"></validation-expression></td>
+    <td><logical-entity [(entity)]="cloud.bNeed"></logical-entity></td>
+    <td></td>
+    <td><logical-entity [(entity)]="cloud.dWant"></logical-entity></td>
+  </tr>
+  <tr>
+    <td rowspan="2"><logical-entity [(entity)]="cloud.objective"></logical-entity></td>
+    <td colspan="3"><validation-expression [(validationExpression)]="dcExp"></validation-expression></td>
+    <td rowspan="2"><validation-expression [(validationExpression)]="ddAltExp"></validation-expression></td>
+  </tr>
+  <tr>
+    <td colspan="3"><validation-expression [(validationExpression)]="dAltbExp"></validation-expression></td>
+  </tr>
+  <tr>
+    <td colspan="2"><validation-expression [(validationExpression)]="acExp"></validation-expression></td>
+    <td><logical-entity [(entity)]="cloud.cNeed"></logical-entity></td>
+    <td></td>
+    <td><logical-entity [(entity)]="cloud.dAltWant"></logical-entity></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td colspan="3"><validation-expression [(validationExpression)]="cdAltExp"></validation-expression></td>
+  </tr>
+</table>
