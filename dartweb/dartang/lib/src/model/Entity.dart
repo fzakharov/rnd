@@ -58,19 +58,19 @@ class EvaporatingCloud extends Entity {
     dcLink.expression = dAltbLink.expression = "ставит под угрозу";
 
     objectiveEnter.expression = "Для того, чтобы";
-    objective.expression = "цель";
+    objective.expression = "CA: Разрабатывать востребованные продукты приносящие финансовую выгоду компании";
     abLink.expression = "мы должны";
-    bNeed.expression = "условие b";
+    bNeed.expression = "CB: Выполнять проекты в срок и в рамках бюджета проекта";
     acLink.expression = "мы должны";
-    cNeed.expression = "условие c";
+    cNeed.expression = "CC: Дорабатывать функциональность по ОС от пользователей";
 
     bNeedEnter.expression = "Для того, чтобы";
     bdLink.expression = "мы должны";
-    dWant.expression = "делать d";
+    dWant.expression = "D: Завершать проект по достижению срока или исчерпанию бюджета";
 
     cNeedEnter.expression = "Для того, чтобы";
     cdAltLink.expression = "мы должны";
-    dAltWant.expression = "делать d'";
+    dAltWant.expression = "D': Выполнять итерацию по доработкам";
 
     ddAltLink.expression = "в конфликте с";
   }
