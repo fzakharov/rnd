@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
-import 'package:dartang/src/model/Entity.dart';
+import 'package:dartang/src/model/ValidationExpression.dart';
 
 @Component(
   selector: 'validation-expression',

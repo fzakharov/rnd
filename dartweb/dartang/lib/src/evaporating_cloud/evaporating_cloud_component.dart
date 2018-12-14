@@ -5,6 +5,7 @@ import 'package:angular_components/angular_components.dart';
 import 'package:dartang/src/evaporating_cloud/logical_entity_component.dart';
 import 'package:dartang/src/evaporating_cloud/validation_expression_component.dart';
 import 'package:dartang/src/model/Entity.dart';
+import 'package:dartang/src/model/ValidationExpression.dart';
 
 @Component(
   selector: 'evaporating-cloud',
