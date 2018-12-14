@@ -80,68 +80,39 @@ abstract class ValidationExpression {
   List<Entity> getExpressionChain();
 }
 
-class ABValidationExpression implements ValidationExpression {
-  EvaporatingCloud cloud;
+class EnterValidationExpression implements ValidationExpression{
+  List<Entity> exp = [];
 
-  ABValidationExpression(EvaporatingCloud this.cloud);
-
+  EnterValidationExpression(EnterEntity enter, LinkEntity link){
+    exp.add(enter);
+    exp.add(enter.to);
+    exp.add(link);
+    exp.add(link.to);
+  }
+  
   List<Entity> getExpressionChain() {
-    final List<Entity> exp = [];
-    exp.add(cloud.objectiveEnter);
-    exp.add(cloud.objectiveEnter.to);
-    exp.add(cloud.abLink);
-    exp.add(cloud.abLink.to);
-
     return exp;
   }
 }
 
-class ACValidationExpression implements ValidationExpression {
-  EvaporatingCloud cloud;
-
-  ACValidationExpression(EvaporatingCloud this.cloud);
-
-  List<Entity> getExpressionChain() {
-    final List<Entity> exp = [];
-    exp.add(cloud.objectiveEnter);
-    exp.add(cloud.objectiveEnter.to);
-    exp.add(cloud.acLink);
-    exp.add(cloud.acLink.to);
-
-    return exp;
-  }
+class ABValidationExpression extends EnterValidationExpression {
+  ABValidationExpression(EvaporatingCloud cloud) 
+    : super(cloud.objectiveEnter, cloud.abLink);
 }
 
-class BDValidationExpression implements ValidationExpression {
-  EvaporatingCloud cloud;
-
-  BDValidationExpression(EvaporatingCloud this.cloud);
-
-  List<Entity> getExpressionChain() {
-    final List<Entity> exp = [];
-    exp.add(cloud.bNeedEnter);
-    exp.add(cloud.bNeedEnter.to);
-    exp.add(cloud.bdLink);
-    exp.add(cloud.bdLink.to);
-
-    return exp;
-  }
+class ACValidationExpression extends EnterValidationExpression {
+  ACValidationExpression(EvaporatingCloud cloud) 
+    : super(cloud.objectiveEnter, cloud.acLink);
 }
 
-class CDAltValidationExpression implements ValidationExpression {
-  EvaporatingCloud cloud;
+class BDValidationExpression extends EnterValidationExpression {
+  BDValidationExpression(EvaporatingCloud cloud)
+  : super(cloud.bNeedEnter, cloud.bdLink);
+}
 
-  CDAltValidationExpression(EvaporatingCloud this.cloud);
-
-  List<Entity> getExpressionChain() {
-    final List<Entity> exp = [];
-    exp.add(cloud.cNeedEnter);
-    exp.add(cloud.cNeedEnter.to);
-    exp.add(cloud.cdAltLink);
-    exp.add(cloud.cdAltLink.to);
-
-    return exp;
-  }
+class CDAltValidationExpression extends EnterValidationExpression {
+  CDAltValidationExpression(EvaporatingCloud cloud)
+  : super(cloud.cNeedEnter, cloud.cdAltLink);
 }
 
 class DDAltValidationExpression implements ValidationExpression {
