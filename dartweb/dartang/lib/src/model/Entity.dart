@@ -1,3 +1,29 @@
+class EntitiesExpressions
+{
+  String objective="";
+  String bNeed="";
+  String cNeed="";
+  String dWant="";
+  String dAltWant="";
+}
+
+class LinkExpressions
+{
+  String objectiveEnter;
+  String bNeedEnter;
+  String cNeedEnter;
+  String abLink;
+  String bdLink;
+
+  String acLink;
+  String cdAltLink;
+  String ddAltLink;
+
+  String dcLink;
+  String dAltbLink;
+}
+
+
 class Entity {
   String expression;
 }
