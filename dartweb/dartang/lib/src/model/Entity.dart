@@ -23,9 +23,9 @@ class LinkExpressions
   String dAltbLink;
 }
 
-class EvaporatingCloud{
-  LinkExpressions linkExpressions = new LinkExpressions();
-  EntitiesExpressions entitiesExpressions = new EntitiesExpressions();
+class EvaporatingCloudExpressions{
+  LinkExpressions links = new LinkExpressions();
+  EntitiesExpressions entities = new EntitiesExpressions();
 }
 
 class Entity {
@@ -107,5 +107,55 @@ class EvaporatingCloudEntity extends Entity {
     dAltWant.expression = "D': Выполнять итерацию по доработкам";
 
     ddAltLink.expression = "в конфликте с";
+  }
+
+  void Load(EvaporatingCloudExpressions dto){
+    var l = dto.links;
+    var e =dto.entities;
+    
+    dcLink.expression = l.dcLink; 
+    dAltbLink.expression = l.dAltbLink;
+
+    objectiveEnter.expression = l.objectiveEnter;
+    objective.expression =e.objective;
+    abLink.expression = l.abLink;
+    bNeed.expression =e.bNeed;
+    acLink.expression = l.acLink;
+    cNeed.expression =e.cNeed;
+
+    bNeedEnter.expression = l.bNeedEnter;
+    bdLink.expression = l.bdLink;
+    dWant.expression =e.dWant;
+
+    cNeedEnter.expression = e.cNeed;
+    cdAltLink.expression = l.cdAltLink;
+    dAltWant.expression = e.dAltWant;
+
+    ddAltLink.expression = l.ddAltLink;
+  }
+
+  void Save(EvaporatingCloudExpressions dto){
+    var l = dto.links;
+    var e =dto.entities;
+    
+    l.dcLink=dcLink.expression; 
+    l.dAltbLink=dAltbLink.expression;
+
+    l.objectiveEnter=objectiveEnter.expression;
+    e.objective=objective.expression;
+    l.abLink=abLink.expression;
+    e.bNeed=bNeed.expression;
+    l.acLink=acLink.expression;
+    e.cNeed=cNeed.expression;
+
+    l.bNeedEnter=bNeedEnter.expression;
+    l.bdLink=bdLink.expression;
+    e.dWant=dWant.expression;
+
+    e.cNeed=cNeedEnter.expression;
+    l.cdAltLink=cdAltLink.expression;
+    e.dAltWant=dAltWant.expression;
+
+    l.ddAltLink=ddAltLink.expression;
   }
 }
