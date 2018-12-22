@@ -34,36 +34,36 @@ class LinkValidationExpression implements ValidationExpression {
 }
 
 class ABValidationExpression extends EnterValidationExpression {
-  ABValidationExpression(EvaporatingCloud cloud)
+  ABValidationExpression(EvaporatingCloudEntity cloud)
       : super(cloud.objectiveEnter, cloud.abLink);
 }
 
 class ACValidationExpression extends EnterValidationExpression {
-  ACValidationExpression(EvaporatingCloud cloud)
+  ACValidationExpression(EvaporatingCloudEntity cloud)
       : super(cloud.objectiveEnter, cloud.acLink);
 }
 
 class BDValidationExpression extends EnterValidationExpression {
-  BDValidationExpression(EvaporatingCloud cloud)
+  BDValidationExpression(EvaporatingCloudEntity cloud)
       : super(cloud.bNeedEnter, cloud.bdLink);
 }
 
 class CDAltValidationExpression extends EnterValidationExpression {
-  CDAltValidationExpression(EvaporatingCloud cloud)
+  CDAltValidationExpression(EvaporatingCloudEntity cloud)
       : super(cloud.cNeedEnter, cloud.cdAltLink);
 }
 
 class DDAltValidationExpression extends LinkValidationExpression {
-  DDAltValidationExpression(EvaporatingCloud cloud) 
+  DDAltValidationExpression(EvaporatingCloudEntity cloud) 
   : super(cloud.ddAltLink);
 }
 
 class DCValidationExpression extends LinkValidationExpression {
-  DCValidationExpression(EvaporatingCloud cloud) 
+  DCValidationExpression(EvaporatingCloudEntity cloud) 
   : super(cloud.dcLink);
 }
 
 class DAltBValidationExpression extends LinkValidationExpression {
-  DAltBValidationExpression(EvaporatingCloud cloud) 
+  DAltBValidationExpression(EvaporatingCloudEntity cloud) 
   : super(cloud.dAltbLink);
 }

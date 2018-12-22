@@ -23,6 +23,10 @@ class LinkExpressions
   String dAltbLink;
 }
 
+class EvaporatingCloud{
+  LinkExpressions linkExpressions = new LinkExpressions();
+  EntitiesExpressions entitiesExpressions = new EntitiesExpressions();
+}
 
 class Entity {
   String expression;
@@ -47,7 +51,7 @@ class NeedEntity extends StatementEntity {}
 
 class WantEntity extends StatementEntity {}
 
-class EvaporatingCloud extends Entity {
+class EvaporatingCloudEntity extends Entity {
   ObjectiveEntity objective = new ObjectiveEntity();
   NeedEntity bNeed = new NeedEntity();
   NeedEntity cNeed = new NeedEntity();
@@ -66,7 +70,7 @@ class EvaporatingCloud extends Entity {
   LinkEntity dcLink;
   LinkEntity dAltbLink;
 
-  EvaporatingCloud() {
+  EvaporatingCloudEntity() {
     objectiveEnter = new EnterEntity(objective);
     bNeedEnter = new EnterEntity(bNeed);
     cNeedEnter = new EnterEntity(cNeed);

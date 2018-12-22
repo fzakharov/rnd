@@ -23,7 +23,7 @@ import 'package:dartang/src/model/ValidationExpression.dart';
 class EvaporatingCloudComponent implements OnInit, OnChanges {
   
   @Output()
-  EvaporatingCloud cloud;
+  EvaporatingCloudEntity cloud;
   String prefixExpression = "Для того чтобы";
   ABValidationExpression abExp;
   ACValidationExpression acExp;
@@ -35,7 +35,7 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
   DAltBValidationExpression dAltbExp;
 
   EvaporatingCloudComponent() {
-    cloud = new EvaporatingCloud();
+    cloud = new EvaporatingCloudEntity();
     abExp = new ABValidationExpression(cloud);
     acExp = new ACValidationExpression(cloud);
     bdExp = new BDValidationExpression(cloud);
