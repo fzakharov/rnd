@@ -5,6 +5,7 @@ import 'package:angular_components/angular_components.dart';
 import 'package:dartang/src/evaporating_cloud/logical_entity_component.dart';
 import 'package:dartang/src/evaporating_cloud/validation_expression_component.dart';
 import 'package:dartang/src/model/Entity.dart';
+import 'package:dartang/src/model/ValidationExpression.dart';
 
 @Component(
   selector: 'evaporating-cloud',
@@ -22,7 +23,7 @@ import 'package:dartang/src/model/Entity.dart';
 class EvaporatingCloudComponent implements OnInit, OnChanges {
   
   @Output()
-  EvaporatingCloud cloud;
+  EvaporatingCloudEntity cloud;
   String prefixExpression = "Для того чтобы";
   ABValidationExpression abExp;
   ACValidationExpression acExp;
@@ -34,7 +35,7 @@ class EvaporatingCloudComponent implements OnInit, OnChanges {
   DAltBValidationExpression dAltbExp;
 
   EvaporatingCloudComponent() {
-    cloud = new EvaporatingCloud();
+    cloud = new EvaporatingCloudEntity();
     abExp = new ABValidationExpression(cloud);
     acExp = new ACValidationExpression(cloud);
     bdExp = new BDValidationExpression(cloud);
